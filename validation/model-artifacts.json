@@ -1,0 +1,165 @@
+{
+  "vgen": {
+    "repo_id": "google/gemma-3-4b-it",
+    "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+    "license": "https://ai.google.dev/gemma/terms",
+    "inference_files_match_pinned_revision": true,
+    "files": [
+      {
+        "name": "added_tokens.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "e17bde03d42feda32d1abfca6d3b598b9a020df7",
+        "actual": "e17bde03d42feda32d1abfca6d3b598b9a020df7",
+        "matches": true
+      },
+      {
+        "name": "chat_template.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "719b0cd0d7a373a400b0c119ee0e051f41ea88d9",
+        "actual": "719b0cd0d7a373a400b0c119ee0e051f41ea88d9",
+        "matches": true
+      },
+      {
+        "name": "config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "fcdc8a6cd637c7ae460065204e7fd0d8c00a38fc",
+        "actual": "fcdc8a6cd637c7ae460065204e7fd0d8c00a38fc",
+        "matches": true
+      },
+      {
+        "name": "generation_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "37a4c871d263a349f50e4a313db3e72164950702",
+        "actual": "37a4c871d263a349f50e4a313db3e72164950702",
+        "matches": true
+      },
+      {
+        "name": "model-00001-of-00002.safetensors",
+        "algorithm": "sha256",
+        "expected": "eb5fd5e97ddd07b56778733e9653c07312529cb00980a318fc3e1c4e3b5a8f1f",
+        "actual": "eb5fd5e97ddd07b56778733e9653c07312529cb00980a318fc3e1c4e3b5a8f1f",
+        "matches": true
+      },
+      {
+        "name": "model-00002-of-00002.safetensors",
+        "algorithm": "sha256",
+        "expected": "fdde0e5aa5ced0fa203b3d50f4ab78168b7e3a3e08c6349f5cc9326666e1bb13",
+        "actual": "fdde0e5aa5ced0fa203b3d50f4ab78168b7e3a3e08c6349f5cc9326666e1bb13",
+        "matches": true
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "4b95241f208f06d324d17c9675568ec58dafd9fb",
+        "actual": "4b95241f208f06d324d17c9675568ec58dafd9fb",
+        "matches": true
+      },
+      {
+        "name": "preprocessor_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "b1e00fc184f61b698181821169c6374cd5813e5c",
+        "actual": "b1e00fc184f61b698181821169c6374cd5813e5c",
+        "matches": true
+      },
+      {
+        "name": "processor_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "453c7966d4b5d0b4a317c585989f64c58c2a6bf0",
+        "actual": "453c7966d4b5d0b4a317c585989f64c58c2a6bf0",
+        "matches": true
+      },
+      {
+        "name": "special_tokens_map.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "1a6193244714d3d78be48666cb02cdbfac62ad86",
+        "actual": "1a6193244714d3d78be48666cb02cdbfac62ad86",
+        "matches": true
+      },
+      {
+        "name": "tokenizer.json",
+        "algorithm": "sha256",
+        "expected": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+        "actual": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+        "matches": true
+      },
+      {
+        "name": "tokenizer.model",
+        "algorithm": "sha256",
+        "expected": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+        "actual": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+        "matches": true
+      },
+      {
+        "name": "tokenizer_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "7bdd14f0eaec30c8d2c56bc9d543587676e19c0f",
+        "actual": "7bdd14f0eaec30c8d2c56bc9d543587676e19c0f",
+        "matches": true
+      }
+    ]
+  },
+  "embedding": {
+    "repo_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "MIT",
+    "inference_files_match_pinned_revision": true,
+    "files": [
+      {
+        "name": "config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "60a2a84020f1d74cc53ea9e8c4e91cf4af6c2b68",
+        "actual": "60a2a84020f1d74cc53ea9e8c4e91cf4af6c2b68",
+        "matches": true
+      },
+      {
+        "name": "model.safetensors",
+        "algorithm": "sha256",
+        "expected": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "actual": "1a55775f53449dac10a2bcbc312469fac40b96d53198c407081a831f81c98477",
+        "matches": true
+      },
+      {
+        "name": "modules.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "ac2039abdf6ff023b27c919bb9675cfe378cb10f",
+        "actual": "ac2039abdf6ff023b27c919bb9675cfe378cb10f",
+        "matches": true
+      },
+      {
+        "name": "sentence_bert_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "4eca68d85ecd3034cf4174d8a4033a75344ea62d",
+        "actual": "4eca68d85ecd3034cf4174d8a4033a75344ea62d",
+        "matches": true
+      },
+      {
+        "name": "sentencepiece.bpe.model",
+        "algorithm": "sha256",
+        "expected": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "actual": "cfc8146abe2a0488e9e2a0c56de7952f7c11ab059eca145a0a727afce0db2865",
+        "matches": true
+      },
+      {
+        "name": "special_tokens_map.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "e0b1d18ecd0ae4ff1d47bd297d910c0cf83e504b",
+        "actual": "e0b1d18ecd0ae4ff1d47bd297d910c0cf83e504b",
+        "matches": true
+      },
+      {
+        "name": "tokenizer.json",
+        "algorithm": "sha256",
+        "expected": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "actual": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39",
+        "matches": true
+      },
+      {
+        "name": "tokenizer_config.json",
+        "algorithm": "git-blob-sha1",
+        "expected": "059214673d9d6d2ee319411e2ffec8c024b816d5",
+        "actual": "059214673d9d6d2ee319411e2ffec8c024b816d5",
+        "matches": true
+      }
+    ]
+  }
+}

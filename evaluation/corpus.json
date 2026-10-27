@@ -1,0 +1,16 @@
+[
+  {
+    "id": "alzheimers", "filename": "1.pdf", "language": "Persian with English abstract", "pages": 11,
+    "title": "Comparison of the Function of the Elman Neural Network and the Deep Neural Network for the Diagnosis of Mild Alzheimer's Disease",
+    "source": "https://doi.org/10.52547/shefa.10.1.1",
+    "sha256": "af820a1baf1793b317f322467ae871408af0348969ea3864aa24e9f54623739e",
+    "redistribution": "Not established; obtain from the publisher or an authorized source."
+  },
+  {
+    "id": "ddos", "filename": "2.pdf", "language": "English", "pages": 10,
+    "title": "An MLP-based Deep Learning Approach for Detecting DDoS Attacks",
+    "source": "https://doi.org/10.22034/tjee.2022.15567",
+    "sha256": "4a266ce29bf42a464901d7dbf042cee3a17bf67e4da04fc2f614944a2d6fbae3",
+    "redistribution": "Not established; obtain from the publisher or an authorized source."
+  }
+]

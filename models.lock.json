@@ -1,0 +1,12 @@
+{
+  "vgen": {
+    "repo_id": "google/gemma-3-4b-it",
+    "revision": "093f9f388b31de276ce2de164bdc2081324b9767",
+    "license": "https://ai.google.dev/gemma/terms"
+  },
+  "embedding": {
+    "repo_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "license": "MIT"
+  }
+}
