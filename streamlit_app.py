@@ -137,12 +137,13 @@ def render_document_table(documents):
             type="secondary",
         ):
             result = get_ingestion_service().delete_document(doc["document_id"])
-            if result["deleted"]:
-                st.success(result["message"])
-                if result.get("vector_error"):
-                    st.warning("Local document deleted, but Qdrant vector cleanup failed: " + result["vector_error"])
-            else:
-                st.warning(result["message"])
+            message = result["message"]
+            if result.get("vector_error"):
+                message += " Qdrant vector cleanup failed: " + result["vector_error"]
+            st.session_state["_operation_notice"] = {
+                "warning": not result["deleted"] or bool(result.get("vector_error")),
+                "message": message,
+            }
             st.rerun()
 
         if doc["error"]:
@@ -159,6 +160,9 @@ def render_document_table(documents):
 
 def render_ingestion_tab():
     st.subheader("Ingestion")
+    notice = st.session_state.pop("_operation_notice", None)
+    if notice:
+        (st.warning if notice["warning"] else st.success)(notice["message"])
     include_captions = st.checkbox("Generate visual captions", value=True)
     index_vectors = st.checkbox("Index for semantic search", value=True)
     issues = setup_issues("ingestion", include_visual_captions=include_captions)
@@ -214,10 +218,10 @@ def render_ingestion_tab():
         confirmed = st.checkbox("Delete all documents, files, and vectors")
         if st.button("Purge SQLite, files, and Qdrant", type="secondary", disabled=not confirmed):
             result = get_ingestion_service().purge_dev_data()
-            if result.get("vector_error"):
-                st.warning(f"Qdrant purge failed: {result['vector_error']}")
-            else:
-                st.success("Purged SQLite rows, app files, and Qdrant vectors.")
+            st.session_state["_operation_notice"] = {
+                "warning": bool(result.get("vector_error")),
+                "message": f"Qdrant purge failed: {result['vector_error']}" if result.get("vector_error") else "Purged SQLite rows, app files, and Qdrant vectors.",
+            }
             st.rerun()
 
 

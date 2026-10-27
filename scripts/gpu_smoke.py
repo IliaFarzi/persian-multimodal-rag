@@ -38,17 +38,23 @@ def main():
             if result.get("warnings") or result["document"]["vector_status"] != "indexed":
                 raise RuntimeError("Smoke ingestion degraded: " + json.dumps(result, ensure_ascii=False))
             document_id = result["document"]["document_id"]
+            regions = kb.load_regions(document_id)
+            if not regions or any(not region["caption"].strip() for region in regions):
+                raise RuntimeError("Smoke PDF must produce visual regions with nonempty captions")
             qa = QASessionService(kb, vector_store=store)
             answers = {}
             for mode in ("text", "simsearch"):
                 answer = qa.answer([document_id], "مقدار AUC روش آلفا چقدر است؟", retrieval_mode=mode)
                 if answer["answer_mode"] != "generated" or not answer["evidence"]:
                     raise RuntimeError(f"{mode} smoke did not produce a generated answer with citations: {answer}")
+                normalized_answer = answer["answer"].translate(str.maketrans("۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩٫", "01234567890123456789."))
+                if "0.91" not in normalized_answer:
+                    raise RuntimeError(f"{mode} smoke answer did not contain the known synthetic AUC value: {answer['answer']}")
                 answers[mode] = answer
             deleted = ingestion.delete_document(document_id)
             if not deleted["deleted"] or deleted["vector_error"] or kb.list_documents() or store.search([document_id], "آلفا"):
                 raise RuntimeError("Document or vector deletion failed")
-            report = {"status": "passed", "seconds": time.perf_counter() - started, "page_count": result["document"]["page_count"], "chunk_count": result["document"]["chunk_count"], "answers": answers, "deletion_verified": True, "runtime": runtime_manifest(), "peak_torch_gpu_allocated_mib": torch.cuda.max_memory_allocated() / 1024**2}
+            report = {"status": "passed", "seconds": time.perf_counter() - started, "page_count": result["document"]["page_count"], "chunk_count": result["document"]["chunk_count"], "captioned_regions": len(regions), "answers": answers, "deletion_verified": True, "runtime": runtime_manifest(), "peak_torch_gpu_allocated_mib": torch.cuda.max_memory_allocated() / 1024**2}
             args.output.parent.mkdir(parents=True, exist_ok=True)
             args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
             print(f"GPU smoke passed. Report: {args.output}")

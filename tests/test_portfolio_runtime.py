@@ -46,6 +46,27 @@ class PortfolioRuntimeTest(unittest.TestCase):
             (root / "part2.safetensors").write_bytes(b"weights")
             self.assertTrue(model_files_present(root))
 
+    def test_failed_vector_deletion_notice_survives_the_ui_rerun(self):
+        import streamlit as st
+        from streamlit.testing.v1 import AppTest
+        from config import ROOT
+        st.cache_resource.clear()
+        self.addCleanup(st.cache_resource.clear)
+        with tempfile.TemporaryDirectory() as directory, patch("knowledge_base.APP_DATA_DIR", Path(directory)), patch(
+            "diagnostics.setup_issues", return_value=[]
+        ):
+            kb = KnowledgeBase()
+            kb.start_document("doc", "paper.pdf", "hash")
+            kb.mark_document_ready("doc", 1, 0)
+            store = MagicMock()
+            store.delete_document_vectors.side_effect = RuntimeError("probe unavailable")
+            with patch("document_app_service.QdrantChunkStore", return_value=store):
+                app = AppTest.from_file(str(ROOT / "streamlit_app.py")).run(timeout=30)
+                next(button for button in app.button if button.label == "Delete").click().run()
+            self.assertEqual(list(app.exception), [])
+            self.assertTrue(any("probe unavailable" in warning.value for warning in app.warning))
+            self.assertEqual(kb.list_documents(), [])
+
     def test_vision_setup_accepts_jinja_chat_templates(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
