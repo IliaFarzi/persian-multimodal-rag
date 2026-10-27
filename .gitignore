@@ -18,3 +18,4 @@ evaluation_runs/
 *.bin
 *.webm
 *.mp4
+!docs/assets/demo.webm

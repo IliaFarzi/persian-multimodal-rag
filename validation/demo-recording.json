@@ -1,0 +1,24 @@
+{
+  "real_elapsed_seconds": 120.1562045110004,
+  "video_seconds": 120.00000000000001,
+  "playback_speed": 1.0013017042583365,
+  "frames_captured": 229,
+  "capture_errors": [],
+  "source": "Actual local Streamlit application, original synthetic PDF",
+  "output_bytes": 1549029,
+  "published_file": "docs/assets/demo.webm",
+  "codec": "VP9 / WebM",
+  "encoded_frames": 240,
+  "encoded_fps": 2.0,
+  "encoded_duration_seconds": 120.0,
+  "browser_playback_check": {
+    "browser": "Firefox",
+    "version": "152.0.3",
+    "width": 1280,
+    "height": 910,
+    "duration": 120,
+    "ready_state": 4,
+    "paused": false,
+    "current_time": 0.000987
+  }
+}

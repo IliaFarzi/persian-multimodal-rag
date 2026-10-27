@@ -2,6 +2,12 @@
 
 Use the original synthetic PDF produced by `python -m examples.make_demo_pdf`. It includes Persian body text, English technical terms, and a raster table with invented values. It can be shared without copying either journal paper into screenshots.
 
+[Watch the completed two-minute recording](assets/demo.webm). It shows actual ingestion, visual captions, BM25 QA, semantic QA, and retrieved evidence. The video includes processing waits; its footer labels playback speed. The original observed timeline was 120.16 seconds, presented in 120 seconds at approximately real time. [Recording metadata](../validation/demo-recording.json) records the capture and encoding details.
+
+![Visual regions and Persian captions](assets/ingestion.png)
+
+![Generated Persian answer with source evidence](assets/semantic.png)
+
 ## Two-minute walkthrough
 
 1. Open **Ingestion** and show the caption and semantic-index switches.

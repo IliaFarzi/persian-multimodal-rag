@@ -4,6 +4,10 @@ A local document question-answering system for Persian scientific PDFs, includin
 
 This is an **applied systems project**. Its contribution is the integration of layout-aware evidence and Persian document QA; it does not train a new foundation model or establish a new state of the art.
 
+[Watch the two-minute app walkthrough](docs/assets/demo.webm) using original synthetic example data.
+
+![Persian generated answer and retrieved source evidence](docs/assets/semantic.png)
+
 ## What it does
 
 - Ingests PDFs and normalizes Persian OCR text.
@@ -73,6 +77,8 @@ python -m scripts.download_models
 
 The downloader omits duplicate PyTorch `.bin`, ONNX, and OpenVINO weights and writes a revision receipt beside the downloaded files. The application loads local files only; it does not silently fetch weights at startup.
 
+To reuse existing downloads without copying or downloading them again, export `VGEN_MODEL_PATH` and `EMBEDDING_MODEL_PATH` before starting the app. In a release folder beside the original project's `models` directory, use `VGEN_MODEL_PATH=../models/vgen` and `EMBEDDING_MODEL_PATH=../models/embedding`.
+
 ### Qdrant and startup
 
 Install Docker with the Compose plugin, then:
@@ -109,6 +115,19 @@ See [the demo guide](docs/DEMO.md) for the walkthrough and recording procedure.
 The pilot contains **30 source-checked Persian questions** about the two existing papers: 20 text, six visual-associated, and four unanswerable questions. The Persian paper and the English paper are reported separately; the latter tests cross-language retrieval. Independent human review of the gold annotations and answer/citation grades remains necessary.
 
 The runner compares BM25 and E5 with visual captions on and off. It produces page-level Hit@5 and MRR@5, latency, fallback rates, memory measurements, raw outputs, and an unfilled human grading sheet. It does not invent accuracy or treat missing grades as failures.
+
+The completed pilot made **120 question attempts**. Retrieval scores below use the 26 answerable questions per condition:
+
+| Retrieval | Captions | Page Hit@5 | Page MRR@5 |
+|---|---|---:|---:|
+| BM25 | Off | 0.769 | 0.649 |
+| BM25 | On | 0.692 | 0.571 |
+| E5 | Off | 0.846 | 0.633 |
+| E5 | On | 0.885 | 0.579 |
+
+Captions raised E5 Hit@5 by one question while lowering its reciprocal rank; BM25's aggregate Hit@5 fell by two questions. Effects varied by document. Answer support, citation correctness and unsupported-question abstention still require independent human grading.
+
+See the [aggregate results](validation/pilot-summary.csv), [question-level retrieval metadata](validation/pilot-retrieval.jsonl), and [runtime record](validation/pilot-runtime.json). Evaluation PDFs and their source passages remain outside the public snapshot. Timings include generation and cold-loading effects and support descriptive observations rather than a controlled speed comparison.
 
 ```bash
 python -m evaluation.run --corpus-dir /path/to/authorized/pdfs --output-dir evaluation_runs/pilot
